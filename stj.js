@@ -1,6 +1,6 @@
 /* ================================
    STJ – Protocolo Digital
-   Assinatura + Envio + Redirect
+   Versão 100% Frontend
 ================================ */
 
 const canvas = document.getElementById("sign");
@@ -59,57 +59,25 @@ canvas.addEventListener("touchend", stop);
 
 /* ===== SUBMIT ===== */
 
-form.addEventListener("submit", async function (ev) {
+form.addEventListener("submit", function (ev) {
   ev.preventDefault();
 
-  try {
-    /* Verificar assinatura */
-    const hasSignature = ctx
-      .getImageData(0, 0, canvas.width, canvas.height)
-      .data.some((channel) => channel !== 0);
+  /* Verificar assinatura */
+  const hasSignature = ctx
+    .getImageData(0, 0, canvas.width, canvas.height)
+    .data.some((channel) => channel !== 0);
 
-    if (!hasSignature) {
-      alert("Por favor, assine no quadro.");
-      return;
-    }
-
-    /* Coletar dados */
-    const nome = document.querySelector('[name="nome"]').value.trim();
-    const cpf = document.querySelector('[name="cpf"]').value.trim();
-    const processo = document.querySelector('[name="proc"]').value.trim();
-    const email = document.querySelector('[name="email"]').value.trim();
-    const motivo = document.querySelector('[name="motivo"]').value.trim();
-    const assinatura = canvas.toDataURL("image/png");
-
-    /* Enviar para backend */
-    const resposta = await fetch("https://formsstj-2scy.onrender.com", { 
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        nome,
-        cpf,
-        processo,
-        email,
-        motivo,
-        assinatura,
-      }),
-    });
-
-    const data = await resposta.json();
-
-    if (!resposta.ok) {
-      throw new Error(data.error || "Erro no envio");
-    }
-
-    console.log("Protocolo recebido:", data.protocolo);
-
-    /* REDIRECIONAR */
-    window.location.href = "protocolo.html?p=" + data.protocolo;
-
-  } catch (err) {
-    console.error("Erro:", err);
-    alert("Erro ao enviar solicitação.");
+  if (!hasSignature) {
+    alert("Por favor, assine no quadro.");
+    return;
   }
+
+  /* Gerar protocolo */
+  const protocolo = Math.floor(Math.random() * 900000 + 100000);
+
+  /* Salvar no navegador */
+  localStorage.setItem("protocoloSTJ", protocolo);
+
+  /* Redirecionar */
+  window.location.href = "protocolo.html";
 });

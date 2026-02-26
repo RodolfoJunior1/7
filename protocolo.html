@@ -20,9 +20,8 @@ p{font-size:1.05rem;line-height:1.4}
 </div>
 
 <script>
-/* pega o número que passou pela URL */
-const url=new URLSearchParams(location.search);
-document.getElementById('num').textContent=url.get('p')||'000000';
+const numero = localStorage.getItem("protocoloSTJ");
+document.getElementById("num").textContent = numero || "000000";
 </script>
 </body>
 </html>
