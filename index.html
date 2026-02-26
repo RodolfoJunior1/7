@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="UTF-8">
+        <title>STJ – Protocolo Virtual</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="stj.css">
+        <link rel="icon" href="https://www.stj.jus.br/favicon.ico">
+    </head>
+    <body>
+        <header>
+            <img alt="logo_stj" src="/img/logo_stj.svg">
+            <br>
+            <br>
+            <h2>Protocolo Digital – Superior Tribunal de Justiça</h2>
+        </header>
+
+        <main>
+            <form id="protoForm">
+            <h2>Solicitação de vista de processo</h2>
+
+            <label>Nome completo</label>
+            <input type="text" name="nome" required>
+
+            <label>CPF (somente números)</label>
+            <input type="text" name="cpf" pattern="\d{11}" maxlength="11" required>
+
+            <label>Número do processo</label>
+            <input type="text" name="proc" placeholder="Ex: 1234567-89.2024.8.26.0000" required>
+
+            <label>E-mail</label>
+            <input type="email" name="email" required>
+
+            <label>Motivo da solicitação</label>
+            <textarea name="motivo" rows="4" required></textarea>
+
+            <div class="signature-box">
+            <canvas id="sign" width="420" height="140"></canvas>
+            <p>Assinatura digital (desenhe com o mouse ou dedo)</p>
+            </div>
+
+            <button type="submit">Enviar solicitação</button>
+            </form>
+        </main>
+
+        <footer>
+            © 2026 Superior Tribunal de Justiça – Todos os direitos reservados
+        </footer>
+
+        <script src="stj.js"></script>
+    </body>
+</html>

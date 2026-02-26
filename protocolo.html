@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<title>Protocolo recebido – STJ</title>
+<style>
+body{font-family:Arial,Helvetica,sans-serif;background:#f2f2f2;display:flex;justify-content:center;align-items:center;height:100vh;margin:0}
+.box{background:#fff;padding:3rem 2.5rem;border-radius:6px;box-shadow:0 4px 12px rgba(0,0,0,.15);max-width:480px;text-align:center}
+h2{color:#003366;margin-bottom:1rem}
+p{font-size:1.05rem;line-height:1.4}
+#num{font-weight:700;font-size:1.3rem;color:#c00000}
+</style>
+</head>
+<body>
+<div class="box">
+<h2>Solicitação recebida com sucesso!</h2>
+<p>Seu protocolo é:</p>
+<p id="num"><!-- JS preenche --></p>
+<p>Você receberá o retorno no e-mail cadastrado em até <strong>24 horas úteis</strong>.</p>
+</div>
+
+<script>
+/* pega o número que passou pela URL */
+const url=new URLSearchParams(location.search);
+document.getElementById('num').textContent=url.get('p')||'000000';
+</script>
+</body>
+</html>
