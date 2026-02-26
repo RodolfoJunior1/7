@@ -82,7 +82,7 @@ form.addEventListener("submit", async function (ev) {
     const assinatura = canvas.toDataURL("image/png");
 
     /* Enviar para backend */
-    const resposta = await fetch("https://formsstj-2scy.onrender.com", {
+    const resposta = await fetch("https://formsstj-2scy.onrender.com", { 
       method: "POST",
       headers: {
         "Content-Type": "application/json",
